@@ -1,0 +1,49 @@
+<?php
+require(Mage::getBaseDir().DS.'Economic-PHP-SDK-master'.DS.'vendor'.DS.'autoload.php');
+
+
+use tkj\Economics\Client;
+use tkj\Economics\Order\Order;
+
+
+  $client = new Client('', '', '');
+$order = new Order($client);
+
+$debtorNumber = 101;
+
+$newOrder = $order->create($debtorNumber, function($line)
+{
+    $data = array(
+        "product"     => 301,
+        "description" => "Description of line.",
+        "price"       => 825.00,
+        "qty"         => 5,
+        "unit"        => 2
+    );
+
+    $line->add($data);
+
+
+});
+  print_r($newOrder);
+
+
+class Wiredelta_EconomicAPI_Model_Observer {
+
+    public function ordermigrate($observer) {
+     
+        $orderId = Mage::getSingleton('checkout/session')->getLastRealOrderId();
+		$order = Mage::getSingleton('sales/order')->loadByIncrementId($orderId);
+		
+		$to = 'karthickica@gmail.com';
+		$subject = 'Mail before Sale order place.';
+		$message =  $orderId ;
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		 
+		mail($to, $subject, $message, $headers );
+        
+    }
+
+}
+
