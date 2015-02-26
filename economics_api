@@ -28,7 +28,7 @@ $newOrder = $order->create($debtorNumber, function($line)
   print_r($newOrder);
 
 
-class Wiredelta_EconomicAPI_Model_Observer {
+class EconomicAPI_Model_Observer {
 
     public function ordermigrate($observer) {
      
