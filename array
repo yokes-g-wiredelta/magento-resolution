@@ -35,11 +35,11 @@ public function freight_infoAction()
         '1576','1555','1615','1635','1533','1739','1727','1737','1753','1763','1700','1671','1799','1574','1771','1707','1705',
         '1774','1554','1759','1651','1766','1750','1699','1532','1500','2100','2000');
      
-         $result[]=array_intersect($param,$param1);
-         echo $result;
-
-         if($result == $param){
-         echo $param1;
-       }
+	        $result[]=array_merge($param,$param1);
+		if($param == $param1){
+		echo $result;
+		}else{
+		echo FALSE;
+		} 
 	}
 }
