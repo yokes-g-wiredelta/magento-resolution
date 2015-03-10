@@ -1,6 +1,7 @@
 public function freight_infoAction()
 	{
 		$params = Mage::app()->getFrontController()->getRequest()->getPost(); 
+		$matchArr =  (array) $params;
 		print_r($params);
         
         $param1 = array('2000','1915','1856','1820','1809','1850','1819','1909','1902','1852','1851','1952','1903','1878',
@@ -41,5 +42,6 @@ public function freight_infoAction()
          if($result == $param){
          echo $param1;
        }
+       
 	}
 }
